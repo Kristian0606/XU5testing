@@ -1,7 +1,11 @@
 
-#include            "xparameters.h"
-#include   "shared_src/intc/intc.h"
-#include "shared_src/ipi/ipi.h"
+#include    "xparameters.h"
+#include    "shared_src/intc/intc.h"
+#include    "shared_src/ipi/ipi.h"
+#include    "xil_printf.h"
+#include    "xil_types.h"
+#include    "shared_src/utility/asm.h"
+
 
 
 static XScuGic          intc_i;
@@ -93,18 +97,22 @@ static void tick_fit_isr(void* ref){
 
     if (tick_counter % TICKS_1_Hz == 0) {
         uptime++;
+
+        ENTER_CRITICAL();
+
         status = ipi_send(&ipi_i, IPI_APU1, 1);
         if (status != XST_SUCCESS) {
             xil_printf("CPU0 - Failed to send IPI message to APU1.\r\n");
         }
         xil_printf("CPU0 - IPI message sent to APU1.\r\n");
 
-
         status = ipi_send(&ipi_i, IPI_APU0, 10);
         if (status != XST_SUCCESS) {
             xil_printf("CPU0 - Failed to send IPI message to APU0.\r\n");
         }
         xil_printf("CPU0 - IPI message sent to APU0.\r\n");
+
+        EXIT_CRITICAL();
     }
 
 
