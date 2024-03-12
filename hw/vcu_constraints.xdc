@@ -37,19 +37,19 @@ set_false_path -from [get_ports CANFD*_PHY_RX]
 #set_false_path -to [get_pins -of [get_cells -hier -filter name=~*can_inst/ol*/*IC_REG_TSR_I*] -filter {REF_PIN_NAME == D}]
 #set_false_path -to [get_pins -of [get_cells -hier -filter name=~*can_inst/ol*/*IC_REG_SR_TDCV_I*] -filter {REF_PIN_NAME == D}]
 
-set_property IOSTANDARD LVCMOS25 [get_ports UART_1_*]
+set_property IOSTANDARD LVCMOS33 [get_ports UART_1_*]
 set_property PULLUP false [get_ports UART_1_*]
 set_property SLEW FAST [get_ports UART_1_*]
 set_property OFFCHIP_TERM NONE [get_ports UART_1_*]
 
 
-set_property PACKAGE_PIN W12 [get_ports UART_1_rxd]
-set_property PACKAGE_PIN AE15 [get_ports UART_1_txd]
+set_property PACKAGE_PIN AH14 [get_ports UART_1_rxd]
+set_property PACKAGE_PIN AG14 [get_ports UART_1_txd]
 
 #
 #       General Purpose Input/Output pins
 #
-set_property IOSTANDARD LVCMOS25 [get_ports {GPIO_tri_io[*]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {GPIO_tri_io[*]}]
 set_property DRIVE 12 [get_ports {GPIO_tri_io[*]}]
 
 # Outputs
