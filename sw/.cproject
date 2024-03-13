@@ -16,7 +16,7 @@
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 				<configuration artifactExtension="elf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GCCErrorParser" id="xilinx.gnu.arm.a53.exe.debug.1610095232" name="Debug" parent="xilinx.gnu.arm.a53.exe.debug" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
 					<folderInfo id="xilinx.gnu.arm.a53.exe.debug.1610095232." name="/" resourcePath="">
-						<toolChain id="xilinx.gnu.arm.a53.exe.debug.toolchain.832468855" name="Xilinx ARM v8 GNU Toolchain" superClass="xilinx.gnu.arm.a53.exe.debug.toolchain">
+						<toolChain errorParsers="" id="xilinx.gnu.arm.a53.exe.debug.toolchain.832468855" name="Xilinx ARM v8 GNU Toolchain" superClass="xilinx.gnu.arm.a53.exe.debug.toolchain">
 							<targetPlatform binaryParser="com.xilinx.sdk.managedbuilder.XELF.arm.a53" id="xilinx.arm.a53.target.gnu.base.debug.26135019" isAbstract="false" name="Debug Platform" superClass="xilinx.arm.a53.target.gnu.base.debug"/>
 							<builder buildPath="${workspace_loc:/cpu0}/Debug" enableAutoBuild="true" errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.CWDLocator" id="xilinx.gnu.arm.a53.toolchain.builder.debug.1204520544" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="GNU make" superClass="xilinx.gnu.arm.a53.toolchain.builder.debug"/>
 							<tool command="aarch64-none-elf-gcc" commandLinePattern="${COMMAND} -c ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GASErrorParser" id="xilinx.gnu.arm.a53.c.toolchain.assembler.debug.1134937336" name="ARM v8 gcc assembler" superClass="xilinx.gnu.arm.a53.c.toolchain.assembler.debug">
@@ -30,11 +30,8 @@
 								</option>
 								<option id="xilinx.gnu.compiler.misc.other.1768247708" name="Other flags" superClass="xilinx.gnu.compiler.misc.other" value="-c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a53 -Werror=implicit-fallthrough -fdata-sections -ffunction-sections -fdata-sections -ffunction-sections -Werror=implicit-fallthrough -Werror=implicit-function-declaration" valueType="string"/>
 								<option id="xilinx.gnu.compiler.dircategory.includes.735019215" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/zcan/libcanard/libcanard}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/cpu0_bsp/psu_cortexa53_0/libsrc/lwip202_v1_2/src/contrib/ports/xilinx/netif}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/cpu0_bsp/psu_cortexa53_0}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/cpu0_bsp/psu_cortexa53_0/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/zcan/o1heap/o1heap}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/zcan/dsdl}&quot;"/>
 								</option>
 								<option id="xilinx.gnu.compiler.symbols.defined.59972858" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="NUNAVUT_ASSERT(x)=assert(x)"/>
@@ -63,11 +60,7 @@
 								<option id="xilinx.gnu.linker.inferred.swplatform.lpath.1650308376" name="Software Platform Library Path" superClass="xilinx.gnu.linker.inferred.swplatform.lpath" valueType="libPaths">
 									<listOptionValue builtIn="false" value="../../cpu0_bsp/psu_cortexa53_0/lib"/>
 								</option>
-								<option id="xilinx.gnu.linker.inferred.swplatform.flags.27735312" name="Software Platform Inferred Flags" superClass="xilinx.gnu.linker.inferred.swplatform.flags" valueType="libs">
-									<listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-lgcc,-lc,--end-group"/>
-									<listOptionValue builtIn="false" value="-Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group"/>
-									<listOptionValue builtIn="false" value="-Wl,--start-group,-lxilffs,-lxil,-lgcc,-lc,--end-group"/>
-								</option>
+								<option id="xilinx.gnu.linker.inferred.swplatform.flags.27735312" name="Software Platform Inferred Flags" superClass="xilinx.gnu.linker.inferred.swplatform.flags" valueType="libs"/>
 								<option id="xilinx.gnu.c.linker.option.lscript.1539814701" name="Linker Script" superClass="xilinx.gnu.c.linker.option.lscript" value="../src/lscript.ld" valueType="string"/>
 								<option id="xilinx.gnu.c.link.option.ldflags.1311512310" name="Linker Flags" superClass="xilinx.gnu.c.link.option.ldflags" value="-mcpu=cortex-a53 -Wl,-build-id=none -Wl,--gc-sections" valueType="string"/>
 								<option id="xilinx.gnu.c.link.option.libs.1868959874" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">

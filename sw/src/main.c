@@ -11,6 +11,7 @@
 static XScuGic          intc_i;
 static XIpiPsu          ipi_i;
 static u32              status;
+static u32              uptime;
 
 
 static void tick_fit_isr(void* ref);
@@ -112,7 +113,7 @@ static void tick_fit_isr(void* ref){
         }
         xil_printf("CPU0 - IPI message sent to APU0.\r\n");
 
-        EXIT_CRITICAL();
+        LEAVE_CRITICAL();
     }
 
 
