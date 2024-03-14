@@ -5,6 +5,8 @@
 #ifndef SRC_UTILITY_LOG_H_
 #define SRC_UTILITY_LOG_H_
 
+
+
 // #define LOG_INFO
 // #define LOG_ERROR
 // #define LOG_ISR
@@ -13,6 +15,7 @@
 // #define LOG_CAN
 // #define LOG_TELEMETRY
 // #define LOG_TELEMETRY_ERROR
+#define LOG_IPI
 
 #ifdef LOG_INFO
 #include "xil_printf.h"
@@ -68,6 +71,13 @@
 #define log_telemetry_error(...) xil_printf(__VA_ARGS__)
 #else
 #define log_telemetry_error(...)
+#endif
+
+#ifdef LOG_IPI
+#include "xil_printf.h"
+#define log_ipi(...) xil_printf(__VA_ARGS__)
+#else
+#define log_ipi(...)
 #endif
 
 #endif /* SRC_UTILITY_LOG_H_ */

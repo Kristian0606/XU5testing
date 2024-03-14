@@ -30,7 +30,7 @@ int intc_init(XScuGic * intc_p) {
     return XST_SUCCESS;
 }
 
-int intc_enable() {
+void intc_enable() {
     Xil_ExceptionEnable();
 }
 

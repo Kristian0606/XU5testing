@@ -13,9 +13,16 @@ static XIpiPsu          ipi_i;
 static u32              status;
 static u32              uptime;
 
+static u32 msg_len = 8;
+static u32 message[] = {11111111, 22222222, 33333333, 44444444,
+                         55555555, 66666666, 77777777, 88888888};
+
+
+
+
 
 static void tick_fit_isr(void* ref);
-static void ipi_isr();
+static void ipi_1_isr();
 
 
 int main(){
@@ -35,23 +42,17 @@ int main(){
         xil_printf("CPU0 - Failed to initialize IPI.\r\n");
         return XST_FAILURE;
     }
-    xil_printf("CPU0 - IPI initialized.\r\n");
+    xil_printf("CPU0 - IPI 1 initialized.\r\n");
+
 
 
     /* Connect ISRs to IPI*/
-    status = intc_connect_isr_to_ipi(&intc_i, IPI_APU0_INT_ID, ipi_isr, &ipi_i);
+    status = intc_connect_isr_to_ipi(&intc_i, IPI_APU0_INT_ID, ipi_1_isr, &ipi_i);
     if (status != XST_SUCCESS) {
         xil_printf("CPU0 - Failed to connect IPI ISR to interrupt controller 1.\r\n");
         return XST_FAILURE;
     }
     xil_printf("CPU0 - IPI ISR connected to interrupt controller 1.\r\n");
-
-    status = intc_connect_isr_to_ipi(&intc_i, IPI_APU1_INT_ID, ipi_isr, &ipi_i);
-    if (status != XST_SUCCESS) {
-        xil_printf("CPU0 - Failed to connect IPI ISR to interrupt controller 7.\r\n");
-        return XST_FAILURE;
-    }
-    xil_printf("CPU0 - IPI ISR connected to interrupt controller 7.\r\n");
 
 
     status = intc_connect_isr(&intc_i, IRQ_FIT,         tick_fit_isr);
@@ -62,14 +63,12 @@ int main(){
     xil_printf("CPU0 - FIT ISR connected to interrupt controller.\r\n");
 
 
-    status = intc_enable();
-    if (status != XST_SUCCESS) {
-        xil_printf("CPU0 - Failed to enable interrupt controller.\r\n");
-        return XST_FAILURE;
-    }
-    xil_printf("CPU0 - Interrupt controller enabled.\r\n");
-
+    intc_enable();
     
+    while(1){
+    	asm("NOP");
+    }
+
 
 
 }
@@ -99,23 +98,49 @@ static void tick_fit_isr(void* ref){
     if (tick_counter % TICKS_1_Hz == 0) {
         uptime++;
 
-        ENTER_CRITICAL();
-
-        status = ipi_send(&ipi_i, IPI_APU1, 1);
-        if (status != XST_SUCCESS) {
-            xil_printf("CPU0 - Failed to send IPI message to APU1.\r\n");
-        }
-        xil_printf("CPU0 - IPI message sent to APU1.\r\n");
-
-        status = ipi_send(&ipi_i, IPI_APU0, 10);
+        status = ipi_send(&ipi_i, IPI_APU0, message, msg_len);
         if (status != XST_SUCCESS) {
             xil_printf("CPU0 - Failed to send IPI message to APU0.\r\n");
         }
         xil_printf("CPU0 - IPI message sent to APU0.\r\n");
 
-        LEAVE_CRITICAL();
+        status = ipi_send(&ipi_i, IPI_APU1, message, msg_len);
+        if (status != XST_SUCCESS) {
+            xil_printf("CPU0 - Failed to send IPI message to APU0.\r\n");
+        }
+        xil_printf("CPU0 - IPI message sent to APU0.\r\n");
+
+        status = ipi_send(&ipi_i, IPI_RPU0, message, msg_len);
+        if (status != XST_SUCCESS) {
+            xil_printf("CPU0 - Failed to send IPI message to APU0.\r\n");
+        }
+        xil_printf("CPU0 - IPI message sent to APU0.\r\n");
+
     }
 
+    // if (tick_counter % TICKS_5_Hz == 0) {
+    //     uptime++;
+
+    //     status = ipi_send(&ipi_i, IPI_APU0, 1);
+    //     if (status != XST_SUCCESS) {
+    //         xil_printf("CPU0 - Failed to send IPI message to APU0.\r\n");
+    //     }
+    //     xil_printf("CPU0 - IPI message sent to APU0.\r\n");
+
+    //     status = ipi_send(&ipi_i, IPI_APU0, 2);
+    //     if (status != XST_SUCCESS) {
+    //         xil_printf("CPU0 - Failed to send IPI message to APU0.\r\n");
+    //     }
+    //     xil_printf("CPU0 - IPI message sent to APU0.\r\n");
+
+    //     status = ipi_send(&ipi_i, IPI_APU0, 3);
+    //     if (status != XST_SUCCESS) {
+    //         xil_printf("CPU0 - Failed to send IPI message to APU0.\r\n");
+    //     }
+    //     xil_printf("CPU0 - IPI message sent to APU0.\r\n");
+    
+
+    // }
 
     ++tick_counter;
 }
@@ -125,21 +150,12 @@ static void tick_fit_isr(void* ref){
  * @brief This function is called when the IPI interrupt is triggered.
  *          It reads the IPI message and adds the corresponding event to the HSM.
  */
-static void ipi_isr(){
-    u32 ipi_msg;
-    u32 status;
-    status = ipi_read(&ipi_i, IPI_APU1, &ipi_msg);
-    if (status != XST_SUCCESS) {
-        xil_printf("CPU0 - Failed to read IPI message from APU1.\r\n");
-        return;
-    }
-    xil_printf("CPU0 - IPI message from APU1: %d.\r\n", ipi_msg);
-    
+static void ipi_1_isr(void *ref){
+    xil_printf("CPU0 - IPI ISR 1: %d\r\n", ref);
+    u32 ipi_msg[8];
 
-    status = ipi_read(&ipi_i, IPI_APU0, &ipi_msg);
-    if (status != XST_SUCCESS) {
-        xil_printf("CPU0 - Failed to read IPI message from APU0.\r\n");
-        return;
-    }
-    xil_printf("CPU0 - IPI message from APU0: %d.\r\n", ipi_msg);
+    ipi_read(&ipi_i, IPI_APU0, ipi_msg, msg_len);
+
+
+    xil_printf("CPU0 - IPI messages read.\r\n");
 }

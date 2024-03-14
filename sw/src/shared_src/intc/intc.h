@@ -54,7 +54,7 @@ int intc_init(XScuGic * intc_p);
  * 
  * @return 0 if successful (int)
  */
-int intc_enable();
+void intc_enable();
 
 /**
  * @brief Connects an interupt service routine (ISR) to an Interrupt Request (IRQ).

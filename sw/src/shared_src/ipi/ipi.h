@@ -10,6 +10,7 @@
 
 #include "xipipsu.h"
 #include "xparameters.h"
+#include "xil_types.h"
 
 #define IPI_APU0                    XPAR_PSU_IPI_0_BIT_MASK 
 #define IPI_RPU0                    XPAR_PSU_IPI_1_BIT_MASK
@@ -69,7 +70,7 @@ int ipi_init(XIpiPsu * ipi, u16 device_id);
  * @param msg the message to send, 32 bit implemented. 32 bytes max
  * @return 0 if successful (int)
  */
-int ipi_send(XIpiPsu * ipi, u32 receiver, u32 msg);
+int ipi_send(XIpiPsu * ipi, u32 receiver, u32 *msg, u32 msg_len);
 
 /**
  * @brief Reads a message from the IPI
@@ -79,6 +80,16 @@ int ipi_send(XIpiPsu * ipi, u32 receiver, u32 msg);
  * @param msg pointer to the adress to store the message
  * @return 0 if successful (int)
  */
-int ipi_read(XIpiPsu * ipi, u32 expected_source, u32 * msg);
+int ipi_read(XIpiPsu * ipi, u32 expected_source, u32 *msg, u32 msg_len);
+
+
+/**
+ * @brief Checks the status of the IPI
+ * 
+ * @param ipi pointer to the IPI driver instance
+ * @param receiver the receiver id
+ * @return 0 if reciver is free (int)
+ */
+int obs_status(XIpiPsu *ipi, u32 receiver);
 
 #endif /* SRC_DRIVERS_IPI_IPI_H_ */

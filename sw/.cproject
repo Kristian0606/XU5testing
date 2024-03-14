@@ -25,9 +25,7 @@
 							<tool command="aarch64-none-elf-gcc" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="xilinx.gnu.arm.a53.c.toolchain.compiler.debug.1029244009" name="ARM v8 gcc compiler" superClass="xilinx.gnu.arm.a53.c.toolchain.compiler.debug">
 								<option defaultValue="gnu.c.optimization.level.none" id="xilinx.gnu.compiler.option.optimization.level.2022899721" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" value="gnu.c.optimization.level.none" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.option.debugging.level.1617332265" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
-								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.1963758356" name="Software Platform Include Path" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
-									<listOptionValue builtIn="false" value="../../cpu0_bsp/psu_cortexa53_0/include"/>
-								</option>
+								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.1963758356" name="Software Platform Include Path" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath"/>
 								<option id="xilinx.gnu.compiler.misc.other.1768247708" name="Other flags" superClass="xilinx.gnu.compiler.misc.other" value="-c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a53 -Werror=implicit-fallthrough -fdata-sections -ffunction-sections -fdata-sections -ffunction-sections -Werror=implicit-fallthrough -Werror=implicit-function-declaration" valueType="string"/>
 								<option id="xilinx.gnu.compiler.dircategory.includes.735019215" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/cpu0_bsp/psu_cortexa53_0}&quot;"/>
@@ -60,7 +58,7 @@
 								<option id="xilinx.gnu.linker.inferred.swplatform.lpath.1650308376" name="Software Platform Library Path" superClass="xilinx.gnu.linker.inferred.swplatform.lpath" valueType="libPaths">
 									<listOptionValue builtIn="false" value="../../cpu0_bsp/psu_cortexa53_0/lib"/>
 								</option>
-								<option id="xilinx.gnu.linker.inferred.swplatform.flags.27735312" name="Software Platform Inferred Flags" superClass="xilinx.gnu.linker.inferred.swplatform.flags" valueType="libs"/>
+								<option id="xilinx.gnu.linker.inferred.swplatform.flags.27735312" name="Software Platform Inferred Flags" superClass="xilinx.gnu.linker.inferred.swplatform.flags"/>
 								<option id="xilinx.gnu.c.linker.option.lscript.1539814701" name="Linker Script" superClass="xilinx.gnu.c.linker.option.lscript" value="../src/lscript.ld" valueType="string"/>
 								<option id="xilinx.gnu.c.link.option.ldflags.1311512310" name="Linker Flags" superClass="xilinx.gnu.c.link.option.ldflags" value="-mcpu=cortex-a53 -Wl,-build-id=none -Wl,--gc-sections" valueType="string"/>
 								<option id="xilinx.gnu.c.link.option.libs.1868959874" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
