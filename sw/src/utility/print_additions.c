@@ -13,3 +13,4 @@ void print_binary(u32 num) {
     }
     xil_printf("\r\n");
 }
+

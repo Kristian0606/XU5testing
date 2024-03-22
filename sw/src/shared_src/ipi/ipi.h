@@ -52,6 +52,14 @@
 // #define IPI_9_INT_ID                  XPAR_PSU_IPI_9_INT_ID
 // #define IPI_10_INT_ID                 XPAR_PSU_IPI_10_INT_ID
 
+
+
+typedef struct 
+{
+    u32 data[7];
+} ipi_message_t;
+
+
 /**
  * @brief Initiates the IPI driver
  * 
@@ -88,7 +96,7 @@ int ipi_read(XIpiPsu * ipi, u32 expected_source, u32 *msg, u32 msg_len);
  * 
  * @param ipi pointer to the IPI driver instance
  * @param receiver the receiver id
- * @return 0 if reciver is free (int)
+ * @return 0 if receiver is not busy (int)
  */
 int obs_status(XIpiPsu *ipi, u32 receiver);
 

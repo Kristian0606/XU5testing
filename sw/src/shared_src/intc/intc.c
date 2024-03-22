@@ -26,7 +26,6 @@ int intc_init(XScuGic * intc_p) {
 
     Xil_ExceptionInit();
     Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XScuGic_InterruptHandler, intc_p);
-    //Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_FIQ_INT, (Xil_ExceptionHandler)XScuGic_InterruptHandler, intc_p);
     return XST_SUCCESS;
 }
 

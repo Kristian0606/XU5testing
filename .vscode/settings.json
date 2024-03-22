@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "intc.h": "c"
+        "intc.h": "c",
+        "future": "c",
+        "system_error": "c"
     }
 }
